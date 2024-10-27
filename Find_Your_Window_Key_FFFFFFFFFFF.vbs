@@ -82,7 +82,7 @@ Sub QueryWindowsProductKeys()
         wscript.echo "ProductID : "  & ProductID 
         wscript.echo "Installation Date: " & NewDate 
 	    ProductData =  "Product: " & Caption  & Version & " (" & OSArchitecture & ")"  & vbNewLine & "ProductID : "  & ProductID & vbNewLine & "Installation Date: " &  NewDate  & vbNewLine & "Installed Key: " &  strWinKey
-        WriteData ProductData
+        WriteData "", ProductData
         Exit Sub
     End If
     strWinKey = CheckWindowsKey("SOFTWARE\Microsoft\Windows NT\CurrentVersion","DigitalProductId4",808)
@@ -93,7 +93,7 @@ Sub QueryWindowsProductKeys()
         wscript.echo "ProductID : "  & ProductID 
         wscript.echo "Installation Date: " & NewDate 
 	    ProductData =  "Product: " & Caption  & Version & " (" & OSArchitecture & ")"  & vbNewLine & "ProductID : "  & ProductID & vbNewLine & "Installation Date: " &  NewDate  & vbNewLine & "Installed Key: " &  strWinKey
-        WriteData ProductData
+        WriteData "", ProductData
         Exit Sub
     End If
     strWinKey = CheckWindowsKey("SOFTWARE\Microsoft\Windows NT\CurrentVersion\DefaultProductKey","DigitalProductId",52)
@@ -104,7 +104,7 @@ Sub QueryWindowsProductKeys()
         wscript.echo "ProductID : "  & ProductID 
         wscript.echo "Installation Date: " & NewDate 
 	    ProductData =  "Product: " & Caption  & Version & " (" & OSArchitecture & ")"  & vbNewLine & "ProductID : "  & ProductID & vbNewLine & "Installation Date: " &  NewDate  & vbNewLine & "Installed Key: " &  strWinKey
-        WriteData ProductData
+        WriteData "", ProductData
         Exit Sub
     End If
     strWinKey = CheckWindowsKey("SOFTWARE\Microsoft\Windows NT\CurrentVersion\DefaultProductKey","DigitalProductId4",808)
@@ -115,7 +115,7 @@ Sub QueryWindowsProductKeys()
         wscript.echo "ProductID : "  & ProductID 
         wscript.echo "Installation Date: " & NewDate 
 	    ProductData =  "Product: " & Caption  & Version & " (" & OSArchitecture & ")"  & vbNewLine & "ProductID : "  & ProductID & vbNewLine & "Installation Date: " &  NewDate  & vbNewLine & "Installed Key: " &  strWinKey
-        WriteData ProductData
+        WriteData "", ProductData
         Exit Sub
     End If
 End Sub
@@ -146,7 +146,7 @@ Function OsArch()
     Set objShell = Nothing
 End Function
 
-Sub WriteData(strValue)
+Sub WriteData(strProperty,strValue)
 
     Dim fso, fName, txt,objshell,UserName
 
@@ -156,9 +156,9 @@ Sub WriteData(strValue)
     fName = "C:\Users\" & UserName & "\Desktop\WindowsKeyInfo.txt"
     Set fso = CreateObject("Scripting.FileSystemObject")
     Set txt = fso.CreateTextFile(fName)
-    txt.Writeline strValue
+    txt.Writeline strProperty & "" & Trim(strValue)
     txt.Close
 
-    WScript.Echo  strValue
+    WScript.Echo strProperty & "" & Trim(strValue)
 
 End Sub
