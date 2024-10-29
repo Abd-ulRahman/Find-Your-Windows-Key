@@ -159,6 +159,6 @@ Sub WriteData(strProperty,strValue)
     txt.Writeline strProperty & "" & Trim(strValue)
     txt.Close
 
-    WScript.Echo strProperty & "" & Trim(strValue)
+    WScript.Echo strProperty Trim(strValue)
 
 End Sub
